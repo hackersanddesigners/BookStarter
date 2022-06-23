@@ -12,12 +12,9 @@ https://jamonserrano.github.io/plumber-sass/
 /* Paged and print specific styles are collected in paged.css */
 @import "paged";
 @import "typography";
-@import "toc";
 @import "debug";
 @import "pagebreaks";
 @import "spreads";
-@import "loading";
-@import "ui";
 
 /* General styling */
 html {
@@ -54,11 +51,6 @@ h3 + p {
 Setting named-pages
 https://pagedjs.org/documentation/8-named-page/
 */
-
-#cover {
-	page: toc;
-	list-style: none;
-}
 
 h1 {
 	page: chapter-title;
@@ -104,17 +96,8 @@ a.image {
 	a {
 		display: block;
 	}
-	// img {
-	// 	display: block;
-	// 	margin: 12pt auto;
-	// }
-
 }
 
-/* 
-Page margin colors. The color names are specified in sketch.js
-Available color: red, green, brown
-*/
 
 @page chapter-title {
 	@top-center {
@@ -149,15 +132,6 @@ Available color: red, green, brown
 	position: relative;
 }
 
-
-/* First page */
-
-.book-title {
-	@include font-ortica();
-	font-size: 14pt;
-	line-height: 15pt;
-}
-
 /* thumbnails, keep caption and image on same page */
 .thumb {
 	break-inside: avoid;
@@ -172,40 +146,3 @@ Available color: red, green, brown
 	width: auto !important;
 }
 
-mark {
-	background-color: transparent;;
-}
-/* for debugging */
-.grid mark {
-	background-color: rgba(255,255,0,0.3);
-}
-
-mark:after {
-	@include font-symbola();
-	font-size: 10pt;
-	// line-height: 10pt;
-	line-height: 0;
-	// so as not to create unequal line heights in footnotes
-}
-// ⇢ ⇛ ⟴ ↦ ↬ ↣ ⇝
-.c1:after {
-	content: "⇢";
-}
-.c2:after {
-	content: "⇛";
-}
-.c3:after {
-	content: "⟴";
-}
-.c4:after {
-	content: "↦";
-}
-.c5:after {
-	content: "↬";
-}
-.c6:after {
-	content: "↣";
-}
-.c7:after {
-	content: "⇝";
-}

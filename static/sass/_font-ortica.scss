@@ -14,11 +14,6 @@
 @mixin font-ortica ( $weight: 300, $with-plumber: true ){
 	font-family: Ortica, serif;
 	font-weight: $weight;
-	// @if $with-plumber {
-  //   @include plumber(
-	// 			$baseline: $baseline-ortica
-	// 		);
-  // }
 }
 
 .font-ortica {

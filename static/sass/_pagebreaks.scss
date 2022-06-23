@@ -9,19 +9,6 @@ h2 {
 	// page-break-before: always;
 }
 
-[class^="toclimit-"] {
-	page-break-before: always;
-}
-
-// .chapter {
-//   page-break-before: right;
-// 	// page-break-after: left;
-// }
-
-.chapter.chapter-introduction {
-	page-break-before: left !important;
-}
-
 .author {
 	page-break-after: always;
 }
@@ -34,9 +21,9 @@ h2 {
 	page-break-before: left;
 }
 
-// .full-spread-image-section {
-// 	page-break-before: left;
-// }
+.full-spread-image-section {
+	page-break-before: left;
+}
 
 .full-page-image {
 	page-break-before: always;
@@ -46,16 +33,6 @@ h2 {
 	page-break-before: left;
 }
 
-
-
-.chapter-end {
-	h1 {
-		display: none;
-	}
-	.author {
-		page-break-after: unset;
-	}
-	h2 {
-		page-break-before: always;
-	}
+.full-page-image.full-page-image-right {
+	page-break-after: always;
 }

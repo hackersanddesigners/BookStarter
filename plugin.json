@@ -1,10 +1,10 @@
 {
-	"id": "Making_Matters_Lexicon",
-	"domain": "Making_Matters_Lexicon",
+	"id": "BookStarter",
+	"domain": "BookStarter",
 	"plugin": {
-			"name": "Making_Matters_Lexicon",
+			"name": "BookStarter",
 			"author": "Heerko",
-			"summary": "Filters for making matters book"
+			"summary": "Custom Wiki2print book design"
 	},
 	"releases": []
 }
