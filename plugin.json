@@ -1,10 +1,10 @@
 {
-	"id": "BookStarter",
-	"domain": "BookStarter",
+	"id": "HD_Bulletin_1",
+	"domain": "HD_Bulletin_1",
 	"plugin": {
-			"name": "BookStarter",
+			"name": "HD_Bulletin_1",
 			"author": "Heerko",
-			"summary": "Custom Wiki2print book design"
+			"summary": "Custom Wiki2print bulletin design"
 	},
 	"releases": []
 }

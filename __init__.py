@@ -12,6 +12,7 @@ from config import config as conf
 WIKI         = conf['wiki']['base_url']
 SUBJECT_NS   = conf['wiki']['subject_ns']
 STYLES_NS    = conf['wiki']['styles_ns']
+SCRIPTS_NS    = conf['wiki']['scripts_ns']
 
 plugin = Plugin(
 		static_folder='static',
@@ -24,11 +25,12 @@ plugin = Plugin(
 # this overwrites the default /pdf route
 
 @plugin.route('/pdf/<string:pagename>', methods=['GET', 'POST'])
-def pagedjs(pagename):	
+def pagedjs(pagename):
 	publication = get_publication(
 		WIKI,
 		SUBJECT_NS,
 		STYLES_NS,
+		SCRIPTS_NS,
 		pagename,
 	)
 	return filter(flask.render_template(
@@ -49,6 +51,7 @@ def filtered_html(pagename):
 		WIKI,
 		SUBJECT_NS,
 		STYLES_NS,
+		SCRIPTS_NS,
 		pagename,
 	)
 	return filter(flask.render_template(
@@ -91,6 +94,8 @@ def removeSrcSets(html):
 # </section>
 
 def createSpreadSection(soup, img):
+	print("creating spread section")
+	print(img)
 	section = soup.new_tag('section', **{"class": 'full-spread-image-section'}) # outer section
 	fpi = soup.new_tag('div', **{"class":'full-page-image full-page-image-left'}) # outer wrapper for image
 	div = soup.new_tag('div') # inner wrapper for image
@@ -111,7 +116,13 @@ def imageSpreads(soup):
 	spreads = soup.find_all(class_='spread')
 	if( spreads ):
 		for spread in spreads:
-			img = spread.find("img")
+			print(spread)
+			if(spread.name == "img"):
+				img = spread
+				spread = spread.find_parent("div", class_="thumb")
+				print(spread)
+			else:
+				img = spread.find("img")
 			if( not img ):
 				print( "missing image for spread?	", spread)
 			else:
@@ -123,9 +134,9 @@ def imageSpreads(soup):
 						to_remove.extract()
 						caption['class'] = 'full-spread-image-caption'
 						section.div.next_sibling.append(caption) # append the caption to the right page
-			spread.replace_with(section)
-			if(section.next_sibling and section.next_sibling.name == 'p'):
-				p = section.next_sibling
-				if len(p.get_text(strip=True)) == 0:
-					p.extract() # Remove empty tag
+				spread.replace_with(section)
+				if(section.next_sibling and section.next_sibling.name == 'p'):
+					p = section.next_sibling
+					if len(p.get_text(strip=True)) == 0:
+						p.extract() # Remove empty tag
 	return soup
