@@ -1,11 +1,12 @@
 /* Pagedjs/paged media specific styles */
 
 @page {
-  size: 110mm 200mm;
+  size: 105mm 297mm;
   margin-top: 15mm;
   margin-right: 10mm;
   margin-bottom: 25mm;
-  margin-left: 15mm;
+  margin-left: 10mm;
+	bleed: 0;
   /* bleed: 6mm;
    marks: crop cross; */
 	background-color: white;
@@ -15,11 +16,6 @@
 	@bottom-center {
     content: counter(page);
   }
-}
-
-@page {
-	bleed: 4mm;
-	marks: crop;
 }
 
 @page:left {
@@ -36,7 +32,6 @@
 	}
 }
 
-
 @page:first {
   @top-left {
     content: "";
@@ -45,33 +40,6 @@
     content: ""; 
   }
 }
-
-.pagedjs_sheet {
-	z-index: 1;
-}
-
-.pagedjs_margin-bottom-left-corner,
-.pagedjs_margin-bottom-right-corner {
-  font-size: 1.5rem;
-  font-family: Ortica, serif;
-}
-
-.pagedjs_footnote_area {
-	margin-top: 1rem;
-}
-
-.pagedjs_footnote_content {
-	padding-top: 5px;
-}
-
-.pagedjs_pages .pagedjs_blank_page {
-	.pagedjs_margin-bottom-center, .pagedjs_margin-top-center {
-		.pagedjs_margin-content {
-			display: none;
-		}
-	} 
-} 
-
 
 /* Setting variables */
 
