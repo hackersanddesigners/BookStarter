@@ -6,16 +6,6 @@ https://pagedjs.org/documentation/
 https://jamonserrano.github.io/plumber-sass/
 */
 
-/* Plumber for baseline grid */
-// @import "plumber";
-
 /* Paged and print specific styles are collected in paged.css */
-@import "paged";
 @import "typography";
-@import "debug";
-@import "pagebreaks";
 @import "spreads";
-
-.pagedjs_page {
-	position: relative;
-}

@@ -1,14 +1,10 @@
-.full-spread-image-section {
-
-}
 .full-page-image {
 	width: var(--pagedjs-width);
 	height: var(--pagedjs-height);
 	overflow: hidden;
 	left: calc(calc(var(--pagedjs-bleed-left) + var(--pagedjs-margin-left))*-1);
 	top: calc(calc(var(--pagedjs-bleed-top) + var(--pagedjs-margin-top))*-1);
-	position: absolute;
-	// background-color: black;
+	position: absolute; 
 }
 
 .full-page-image div {
@@ -31,14 +27,7 @@
 	margin: 0 !important;
 }
 
-// .full-page-image {
-// 	page-break-before: always;
-// }
-
-.title-spread .full-page-image {
-	background-color: black;
-}
-
+/* Position the caption */
 .full-spread-image-section .full-page-image div.full-spread-image-caption {
 	height: auto;
 	position: absolute;
