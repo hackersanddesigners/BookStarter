@@ -33,11 +33,16 @@ def pagedjs(pagename):
 		SCRIPTS_NS,
 		pagename,
 	)
+	args = request.args
+	# convert the 'nocache' query param to a boolean if set
+	nocache = args.get('nocache', False)
 	return filter(flask.render_template(
-		'custom.html', 
-		title = pagename,
-		html  = publication['html'],
+			'custom.html',
+			title=pagename,
+			html=publication['html'],
+			nocache=nocache
 	))
+
  
 
 # The filters in this plugin work on request time
