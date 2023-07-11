@@ -1,0 +1,22 @@
+/* Fonts */
+
+@font-face {
+  font-family: "notcourier";
+  src: url("../fonts/NotCourierSans/notcouriersans_regular_macroman/NotCourierSans-webfont.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "notcourier";
+  src: url("../fonts/NotCourierSans/notcouriersans_bold_macroman/NotCourierSans-Bold-webfont.woff") format("woff");
+  font-weight: bold;
+}
+
+@mixin font-notcourier( $weight: 90, $with-plumber: true) {
+	font-family: notcourier, sans-serif;
+	font-weight: $weight;
+}
+
+.font-notcourier {
+	@include font-notcourier();
+}

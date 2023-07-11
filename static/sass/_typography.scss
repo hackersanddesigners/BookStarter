@@ -7,12 +7,13 @@ make it easier to adapt.
 */
 
 // @import "font-literata";
-@import "font-ortica";
-@import "font-combine";
+// @import "font-ortica";
+// @import "font-combine";
+// @import "font-symbola";
 @import "font-authentic";
-@import "font-symbola";
+@import "font-notcourier";
 
 body {
-	@include font-ortica();
+	@include font-authentic();
 }
 
