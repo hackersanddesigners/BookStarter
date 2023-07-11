@@ -18,6 +18,12 @@
   font-weight: 130;
 }
 
+@font-face {
+  font-family: "Authentic";
+  src: url("../fonts/AUTHENTIC_SANS/woff/AUTHENTICSans-150.woff2") format("woff2"), url("../fonts/AUTHENTIC_SANS/woff/AUTHENTICSans-150.woff") format("woff");
+  font-weight: 150;
+}
+
 @mixin font-authentic( $weight: 90, $with-plumber: true) {
 	font-family: Authentic, sans-serif;
 	font-weight: $weight;
