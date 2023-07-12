@@ -18,35 +18,46 @@ class MM_Handler extends Paged.Handler {
 }
 
 
-class Bionic extends Paged.Handler {
+class EasyReading extends Paged.Handler {
 	constructor(chunker, polisher, caller) {
 		super(chunker, polisher, caller);
 		this.chunker = chunker;
 		this.polisher = polisher;
 		this.caller = caller;
-		console.log("Bionic");
 	}
 
 	beforeParsed(content) {
 		// modified from: https://stackoverflow.com/questions/49403285/splitting-word-into-syllables-in-javascript
 		const syllableRegex = /[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi;
-		
+
 		function syllabify(word) {
 			const result = word.match(syllableRegex);
 			return result ? result : [word];
 		}
 
-		// source content is .mw-parser-output 
+		function splitWords(text) {
+			// Split text into words while ignoring HTML tags
+			const regex = /(<[^>]+>)|\s+/g;
+			return text.split(regex).filter(word => word !== undefined && word !== "");
+		}
+
+		function processParagraph(paragraph) {
+			// Get text content of paragraph
+			const text = paragraph.innerHTML;
+			// Split text into words while ignoring HTML tags
+			const words = splitWords(text);
+			// Process words and replace paragraph content
+			const processedWords = words.map(speedRead);
+			paragraph.innerHTML = processedWords.join(" ");
+		}
+
 		const output = content.querySelector(".mw-parser-output");
-		output.querySelectorAll("p").forEach(
-			p => {
-				const words = p.innerText.split(" ");
-				console.log(words);
-				p.innerHTML = words.map(speedRead).join(" ");
-			}
-		);
+		output.querySelectorAll("p").forEach(processParagraph);
 
 		function speedRead(word) {
+			// if the word starts with "<" it's an HTML tag. skip it.
+			if (word.startsWith("<")) return word;
+
 			let syllables = syllabify(word);
 			// console.log(syllables);
 			if (syllables.length > 1) {
@@ -65,14 +76,14 @@ class Bionic extends Paged.Handler {
 }
 
 ready.then(async function () {
-	
+
 	let flowText = document.querySelector("#source");
 
 	let t0 = performance.now();
-	
+
 	Paged.registerHandlers(MM_Handler);
-	Paged.registerHandlers(Bionic);
-	
+	Paged.registerHandlers(EasyReading);
+
 	let paged = new Paged.Previewer();
 
 	paged.preview(flowText.content).then((flow) => {
