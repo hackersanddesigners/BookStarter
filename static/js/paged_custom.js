@@ -58,7 +58,7 @@ class EasyReading extends Paged.Handler {
 			// if the word starts with "<" it's an HTML tag. skip it.
 			if (word.startsWith("<")) return word;
 
-			let syllables = syllabify(word);
+			let syllables = syllabify(htmlEntitiesToText(word));
 			// console.log(syllables);
 			if (syllables.length > 1) {
 				const firstSyllable = syllables[0];
@@ -72,6 +72,12 @@ class EasyReading extends Paged.Handler {
 				return `<b>${firstHalf}</b>${secondHalf}`;
 			}
 		}
+
+		function htmlEntitiesToText(html) {
+			const parser = new DOMParser();
+			const decoded = parser.parseFromString(html, 'text/html');
+			return decoded.documentElement.textContent;
+		  }
 	}
 }
 
